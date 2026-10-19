@@ -1,0 +1,175 @@
+/* Setup Malin — feuille de style commune */
+:root {
+  --papier: #eef1ec;      /* fond, comme un tapis de bureau clair */
+  --encre: #1d2b2a;       /* texte */
+  --gris: #5b6b67;        /* texte secondaire */
+  --feutre: #2f5d50;      /* vert feutre : marque, verdicts */
+  --feutre-clair: #dfe9e3;
+  --trait: #c9d1c8;       /* bordures */
+  --blanc: #ffffff;
+  --temu: #c8553d;        /* côté Temu */
+  --temu-clair: #f6e4df;
+  --amazon: #2c4a7a;      /* côté Amazon */
+  --amazon-clair: #e1e7f1;
+  --rayon: 6px;
+  --mesure: 68ch;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  font-family: "Atkinson Hyperlegible", system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--encre);
+  background: var(--papier);
+}
+
+h1, h2, h3, .logo {
+  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+}
+h1 { font-size: clamp(2.1rem, 5.5vw, 3.6rem); font-weight: 800; }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin-bottom: 0.6rem; }
+h3 { font-size: 1.25rem; font-weight: 700; }
+p + p { margin-top: 0.8rem; }
+a { color: var(--feutre); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--feutre); outline-offset: 3px; border-radius: 3px;
+}
+
+.conteneur { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+.etroit { max-width: var(--mesure); }
+
+/* ---------- En-tête ---------- */
+.entete { border-bottom: 1px solid var(--trait); background: var(--papier); }
+.entete .conteneur { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 14px; padding-bottom: 14px; flex-wrap: wrap; }
+.logo { font-size: 1.35rem; font-weight: 800; color: var(--encre); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+.logo-marque { width: 30px; height: 20px; border-radius: 4px; background: linear-gradient(90deg, var(--temu) 0 50%, var(--amazon) 50% 100%); display: inline-block; }
+.nav a { color: var(--encre); text-decoration: none; margin-left: 18px; font-size: 0.95rem; }
+.nav a:hover, .nav a[aria-current="page"] { text-decoration: underline; }
+
+.transparence { background: var(--feutre); color: #f2f6f3; font-size: 0.88rem; padding: 8px 0; }
+.transparence a { color: #fff; }
+
+/* ---------- Accueil : héro + tableau des scores ---------- */
+.hero { padding: 64px 0 56px; }
+.hero .conteneur { display: grid; grid-template-columns: 1.25fr 1fr; gap: 48px; align-items: start; }
+.hero p.chapo { font-size: 1.2rem; color: var(--gris); margin-top: 20px; max-width: 46ch; }
+
+.scores { background: var(--blanc); border: 1px solid var(--trait); border-radius: var(--rayon); padding: 22px 22px 14px; }
+.scores h2 { font-size: 1.1rem; margin-bottom: 4px; }
+.scores .sous { color: var(--gris); font-size: 0.9rem; margin-bottom: 14px; }
+.ligne-score { display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; padding: 11px 0; border-top: 1px solid var(--trait); text-decoration: none; color: var(--encre); }
+.ligne-score:hover .nom { text-decoration: underline; }
+.pastille { font-size: 0.82rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
+.pastille.temu { background: var(--temu-clair); color: var(--temu); }
+.pastille.amazon { background: var(--amazon-clair); color: var(--amazon); }
+.pastille.depend { background: var(--feutre-clair); color: var(--feutre); }
+.total { display: flex; gap: 18px; padding-top: 12px; border-top: 2px solid var(--encre); font-size: 0.92rem; flex-wrap: wrap; }
+.total strong { font-family: "Bricolage Grotesque", sans-serif; font-size: 1.3rem; }
+
+/* ---------- Sections génériques ---------- */
+.section { padding: 56px 0; }
+.section-claire { background: var(--blanc); border-top: 1px solid var(--trait); border-bottom: 1px solid var(--trait); }
+.intro { color: var(--gris); max-width: var(--mesure); margin-bottom: 28px; }
+
+.methode { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 28px; }
+.methode h3 { font-size: 1.05rem; margin-bottom: 4px; }
+.methode p { color: var(--gris); font-size: 0.97rem; }
+
+/* Liste des comparatifs (accueil) */
+.liste { list-style: none; border-top: 2px solid var(--encre); }
+.liste li { border-bottom: 1px solid var(--trait); }
+.liste a { display: grid; grid-template-columns: 1fr auto; gap: 6px 20px; padding: 20px 4px; color: var(--encre); text-decoration: none; }
+.liste a:hover h3 { text-decoration: underline; }
+.liste p { color: var(--gris); grid-column: 1 / 2; max-width: 60ch; }
+.liste .pastille { grid-column: 2; grid-row: 1; align-self: start; }
+
+/* ---------- Page comparatif ---------- */
+.fil { font-size: 0.9rem; color: var(--gris); padding-top: 24px; }
+.fil a { color: var(--gris); }
+.tete-article { padding: 20px 0 36px; }
+.tete-article h1 { font-size: clamp(1.9rem, 4.5vw, 3rem); max-width: 22ch; }
+.tete-article .chapo { font-size: 1.15rem; color: var(--gris); margin-top: 16px; max-width: var(--mesure); }
+.verdict-court { margin-top: 22px; display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+
+.duel { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--trait); border-radius: var(--rayon); background: var(--blanc); overflow: hidden; }
+.cote { padding: 28px; display: flex; flex-direction: column; }
+.cote + .cote { border-left: 1px solid var(--trait); }
+.cote.temu { border-top: 6px solid var(--temu); }
+.cote.amazon { border-top: 6px solid var(--amazon); }
+.cote .site { font-weight: 700; font-size: 0.95rem; }
+.cote.temu .site { color: var(--temu); }
+.cote.amazon .site { color: var(--amazon); }
+.cote h2 { font-size: 1.35rem; margin: 6px 0 6px; }
+.cote .modele { color: var(--gris); font-size: 0.93rem; margin-bottom: 14px; }
+.cote h3 { font-size: 1rem; margin: 16px 0 6px; }
+.cote ul { list-style: none; }
+.cote li { position: relative; padding-left: 24px; margin-bottom: 6px; }
+.plus li::before { content: "+"; position: absolute; left: 4px; font-weight: 700; color: var(--feutre); }
+.moins li::before { content: "–"; position: absolute; left: 5px; font-weight: 700; color: var(--temu); }
+.avis { margin-top: 18px; padding: 16px; background: var(--papier); border-radius: var(--rayon); font-size: 0.97rem; }
+.avis .titre-avis { font-weight: 700; display: block; margin-bottom: 4px; }
+.avis .source { display: block; margin-top: 10px; font-size: 0.84rem; color: var(--gris); }
+.pour-qui { margin: 16px 0 22px; font-size: 0.98rem; }
+.pour-qui strong { color: var(--feutre); }
+.bouton { margin-top: auto; display: block; text-align: center; font-weight: 700; padding: 14px 16px; border-radius: var(--rayon); text-decoration: none; color: #fff; }
+.temu .bouton { background: var(--temu); }
+.amazon .bouton { background: var(--amazon); }
+.bouton:hover { filter: brightness(1.08); }
+.note-lien { text-align: center; font-size: 0.8rem; color: var(--gris); margin-top: 6px; }
+
+.tableau-defile { overflow-x: auto; margin-top: 36px; }
+table { width: 100%; min-width: 540px; border-collapse: collapse; background: var(--blanc); border: 1px solid var(--trait); }
+caption { text-align: left; font-family: "Bricolage Grotesque", sans-serif; font-weight: 700; font-size: 1.2rem; padding-bottom: 10px; }
+th, td { text-align: left; padding: 12px 14px; border-bottom: 1px solid var(--trait); vertical-align: top; }
+thead th { font-size: 0.92rem; border-bottom: 2px solid var(--encre); }
+thead th.t-temu { color: var(--temu); }
+thead th.t-amazon { color: var(--amazon); }
+tbody th { font-weight: 700; }
+
+.conseils { margin-top: 36px; max-width: var(--mesure); }
+.conseils h2 { font-size: 1.3rem; }
+.conseils ul { margin-left: 20px; }
+.conseils li { margin-bottom: 6px; }
+
+.verdict { margin-top: 40px; background: var(--feutre); color: #eef4f0; border-radius: var(--rayon); padding: 30px; }
+.verdict h2 { color: #fff; }
+.verdict p { max-width: var(--mesure); }
+.verdict strong { color: #fff; }
+
+.autres { margin-top: 48px; }
+
+/* FAQ */
+details { border-top: 1px solid var(--trait); padding: 16px 0; max-width: var(--mesure); }
+details:last-child { border-bottom: 1px solid var(--trait); }
+summary { cursor: pointer; font-weight: 700; }
+details p { margin-top: 8px; color: var(--gris); }
+
+/* Texte long (mentions légales) */
+.texte { max-width: var(--mesure); padding: 24px 0 64px; }
+.texte h2 { margin-top: 32px; font-size: 1.35rem; }
+.texte p, .texte ul { margin-top: 10px; }
+.texte ul { margin-left: 20px; }
+
+/* ---------- Pied de page ---------- */
+.pied { border-top: 1px solid var(--trait); padding: 36px 0 48px; font-size: 0.9rem; color: var(--gris); }
+.pied p { max-width: var(--mesure); }
+.pied a { color: var(--gris); }
+
+/* ---------- Mobile ---------- */
+@media (max-width: 800px) {
+  .hero .conteneur { grid-template-columns: 1fr; gap: 32px; }
+  .hero { padding: 40px 0; }
+  .duel { grid-template-columns: 1fr; }
+  .cote + .cote { border-left: none; border-top: 6px solid var(--amazon); }
+  .nav a { margin: 0 16px 0 0; }
+  .cote { padding: 22px; }
+}
+
+.methode + details { margin-top: 32px; }
+.nav a { white-space: nowrap; }

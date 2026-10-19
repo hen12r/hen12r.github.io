@@ -1,493 +1,58 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Setup Malin – Amazon ou Temu pour ton bureau ? Comparatifs honnêtes</title>
-  <meta name="description" content="Tapis XXL, bras d'écran, gestion des câbles : on compare Amazon et Temu à partir des avis d'acheteurs, sans faux tests. Pour savoir si ça vaut le coup de payer plus.">
-  <style>
-    :root {
-      --fond: #f8fafc; --texte: #1e293b; --gris: #64748b; --carte: #ffffff;
-      --bordure: #e2e8f0; --sombre: #0f172a; --bleu: #2563eb; --violet: #7c3aed;
-      --amazon: #ff9900; --temu: #fb7701; --vert: #16a34a; --rouge: #dc2626; --jaune: #fef9c3;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.65; color: var(--texte); background: var(--fond); }
-    .conteneur { max-width: 1060px; margin: 0 auto; padding: 0 16px; }
-    a { color: var(--bleu); }
-
-    /* En-tête */
-    header { background: var(--sombre); padding: 14px 0; position: sticky; top: 0; z-index: 10; }
-    header .conteneur { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-    .logo { color: #fff; font-weight: 800; font-size: 1.3rem; text-decoration: none; }
-    .logo span { color: var(--amazon); }
-    nav a { color: #cbd5e1; text-decoration: none; margin-left: 18px; font-size: 0.93rem; }
-    nav a:hover { color: #fff; }
-
-    .bandeau-affil { background: var(--jaune); color: #713f12; font-size: 0.85rem; text-align: center; padding: 8px 16px; }
-
-    /* Intro */
-    .hero { background: linear-gradient(135deg, var(--bleu), var(--violet)); color: #fff; padding: 72px 0 64px; text-align: center; }
-    .hero h1 { font-size: 2.3rem; line-height: 1.2; margin-bottom: 18px; }
-    .hero p { max-width: 700px; margin: 0 auto 28px; font-size: 1.1rem; opacity: 0.95; }
-    .bouton-hero { display: inline-block; background: #fff; color: var(--bleu); font-weight: 700; padding: 14px 28px; border-radius: 999px; text-decoration: none; }
-
-    section { padding: 56px 0; }
-    h2 { font-size: 1.7rem; margin-bottom: 12px; line-height: 1.3; }
-    .sous-titre { color: var(--gris); margin-bottom: 32px; max-width: 760px; }
-
-    /* Méthode */
-    .grille-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
-    .bloc { background: var(--carte); border: 1px solid var(--bordure); border-radius: 14px; padding: 22px; }
-    .bloc strong { display: block; margin-bottom: 6px; font-size: 1.05rem; }
-    .alerte { margin-top: 24px; background: #eff6ff; border-left: 5px solid var(--bleu); border-radius: 10px; padding: 18px 20px; }
-
-    /* Sommaire */
-    .sommaire { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
-    .lien-sommaire { display: block; background: var(--carte); border: 1px solid var(--bordure); border-radius: 16px; padding: 24px; text-decoration: none; color: var(--texte); transition: transform 0.15s, box-shadow 0.15s; }
-    .lien-sommaire:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(15,23,42,0.08); }
-    .lien-sommaire .emoji { font-size: 2rem; }
-    .lien-sommaire h3 { margin: 8px 0 4px; }
-    .lien-sommaire p { color: var(--gris); font-size: 0.93rem; }
-
-    /* Comparatifs */
-    .comparatif:nth-of-type(odd) { background: #eef2ff; }
-    .duel { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
-    .fiche { background: var(--carte); border-radius: 18px; padding: 28px; box-shadow: 0 4px 18px rgba(15,23,42,0.08); display: flex; flex-direction: column; border-top: 6px solid; }
-    .fiche.temu { border-color: var(--temu); }
-    .fiche.amazon { border-color: var(--amazon); }
-    .etiquette { align-self: flex-start; font-size: 0.8rem; font-weight: 700; padding: 4px 12px; border-radius: 999px; margin-bottom: 14px; color: #fff; }
-    .temu .etiquette { background: var(--temu); }
-    .amazon .etiquette { background: var(--sombre); }
-    .fiche h3 { font-size: 1.3rem; margin-bottom: 6px; }
-    .modele { color: var(--gris); font-size: 0.9rem; margin-bottom: 18px; }
-    .photo { background: #f1f5f9; border: 2px dashed var(--bordure); border-radius: 12px; height: 160px; display: flex; align-items: center; justify-content: center; color: var(--gris); font-size: 0.9rem; margin-bottom: 18px; text-align: center; padding: 10px; }
-    .fiche h4 { font-size: 0.95rem; margin: 14px 0 8px; }
-    .fiche ul { list-style: none; }
-    .fiche li { padding-left: 28px; position: relative; margin-bottom: 8px; }
-    .plus li::before { content: "✔"; color: var(--vert); position: absolute; left: 4px; font-weight: 700; }
-    .moins li::before { content: "✘"; color: var(--rouge); position: absolute; left: 4px; font-weight: 700; }
-    .avis { background: #f8fafc; border: 1px solid var(--bordure); border-radius: 10px; padding: 14px; margin-top: 16px; font-size: 0.93rem; }
-    .avis .source { display: block; color: var(--gris); font-size: 0.8rem; margin-top: 8px; }
-    .pour-qui { background: #f0fdf4; border-radius: 10px; padding: 14px; margin: 16px 0 22px; font-size: 0.95rem; }
-    .bouton { margin-top: auto; display: block; text-align: center; font-weight: 800; font-size: 1.05rem; padding: 16px; border-radius: 12px; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; }
-    .bouton:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
-    .temu-btn { background: var(--temu); color: #fff; }
-    .amazon-btn { background: var(--amazon); color: var(--sombre); }
-    .mention-bouton { text-align: center; font-size: 0.78rem; color: var(--gris); margin-top: 8px; }
-
-    /* Tableau */
-    .tableau-scroll { overflow-x: auto; margin-top: 36px; }
-    table { width: 100%; border-collapse: collapse; background: var(--carte); border-radius: 14px; overflow: hidden; min-width: 560px; }
-    th, td { padding: 13px 16px; text-align: left; border-bottom: 1px solid var(--bordure); }
-    th { background: var(--sombre); color: #fff; font-size: 0.95rem; }
-    tr:last-child td { border-bottom: none; }
-    td:first-child { font-weight: 600; }
-
-    /* Verdict et checklist */
-    .verdict { background: var(--sombre); color: #e2e8f0; border-radius: 18px; padding: 28px; margin-top: 32px; }
-    .verdict h3 { color: #fff; margin-bottom: 12px; }
-    .verdict p { margin-bottom: 10px; }
-    .verdict strong { color: #fff; }
-    .checklist { background: var(--carte); border: 1px solid var(--bordure); border-radius: 14px; padding: 22px; margin-top: 24px; }
-    .checklist h3 { margin-bottom: 10px; font-size: 1.1rem; }
-    .checklist li { margin: 0 0 8px 20px; }
-
-    /* FAQ */
-    details { background: var(--carte); border: 1px solid var(--bordure); border-radius: 12px; padding: 16px 20px; margin-bottom: 12px; }
-    summary { font-weight: 700; cursor: pointer; }
-    details p { margin-top: 10px; color: var(--gris); }
-
-    /* Pied de page */
-    footer { background: var(--sombre); color: #94a3b8; padding: 40px 0; font-size: 0.88rem; }
-    footer p { margin-bottom: 10px; }
-    footer strong { color: #e2e8f0; }
-
-    @media (max-width: 640px) {
-      .hero { padding: 52px 0 46px; }
-      .hero h1 { font-size: 1.7rem; }
-      h2 { font-size: 1.4rem; }
-      nav a { margin-left: 0; margin-right: 14px; }
-      .fiche { padding: 22px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Setup Malin : Amazon ou Temu pour ton bureau ? Comparatifs honnêtes</title>
+<meta name="description" content="Tapis XXL, bras d&#x27;écran, câbles, réhausseur : on compare Amazon et Temu à partir des vrais avis d&#x27;acheteurs, sans faux tests.">
+<link rel="canonical" href="https://hen12r.github.io/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
+<header class="entete"><div class="conteneur">
+<a href="index.html" class="logo"><span class="logo-marque" aria-hidden="true"></span>Setup Malin</a>
+<nav class="nav" aria-label="Navigation principale"><a href="index.html#comparatifs">Comparatifs</a><a href="index.html#methode">Notre méthode</a><a href="mentions-legales.html">Mentions légales</a></nav>
+</div></header>
+<div class="transparence"><div class="conteneur">Transparence : ce site pourra contenir des liens affiliés. Si tu achètes via ces liens, je toucherai une petite commission, sans surcoût pour toi. <a href="mentions-legales.html#affiliation">En savoir plus</a></div></div>
+<main>
+<section class="hero"><div class="conteneur">
+<div>
+<h1>Amazon ou Temu : qui gagne vraiment sur ton bureau ?</h1>
+<p class="chapo">On compare le même accessoire sur les deux sites, à partir de 316 avis d'acheteurs lus un par un. Parfois Temu est imbattable. Parfois il n'est même pas le moins cher.</p>
+</div>
+<aside class="scores" aria-labelledby="scores-titre">
+<h2 id="scores-titre">Le tableau des scores</h2>
+<p class="sous">Relevé du 19 octobre 2026</p>
+<a class="ligne-score" href="tapis-de-souris-xxl.html"><span class="nom">Tapis de bureau XXL</span><span class="pastille depend">Ça dépend</span></a><a class="ligne-score" href="bras-ecran.html"><span class="nom">Bras articulé pour écran</span><span class="pastille amazon">Amazon gagne</span></a><a class="ligne-score" href="gestion-des-cables.html"><span class="nom">Kit de gestion des câbles</span><span class="pastille temu">Temu gagne</span></a><a class="ligne-score" href="rehausseur-pc-portable.html"><span class="nom">Réhausseur pour PC portable</span><span class="pastille depend">Ça dépend</span></a>
+<div class="total"><span><strong>1</strong> Temu</span><span><strong>1</strong> Amazon</span><span><strong>2</strong> ça dépend</span></div>
+</aside>
+</div></section>
 
-  <!-- ===================== EN-TÊTE ===================== -->
-  <header>
-    <div class="conteneur">
-      <a href="#" class="logo">Setup<span>Malin</span></a>
-      <nav>
-        <a href="#tapis">Tapis XXL</a>
-        <a href="#bras">Bras d'écran</a>
-        <a href="#cables">Câbles</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-    </div>
-  </header>
+<section class="section section-claire" id="comparatifs"><div class="conteneur">
+<h2>Les comparatifs</h2>
+<p class="intro">Chaque comparatif oppose un produit Temu et un produit Amazon du même type, avec un verdict clair.</p>
+<ul class="liste"><li><a href="tapis-de-souris-xxl.html"><h3>Tapis de bureau XXL</h3><p>Grand tapis à tout petit prix sur Temu, plus fiable sur Amazon.</p><span class="pastille depend">Ça dépend</span></a></li><li><a href="bras-ecran.html"><h3>Bras articulé pour écran</h3><p>Surprise : ici, Temu n'était même pas le moins cher.</p><span class="pastille amazon">Amazon gagne</span></a></li><li><a href="gestion-des-cables.html"><h3>Kit de gestion des câbles</h3><p>Beaucoup plus de pièces pour bien moins cher sur Temu, mais un adhésif critiqué.</p><span class="pastille temu">Temu gagne</span></a></li><li><a href="rehausseur-pc-portable.html"><h3>Réhausseur pour PC portable</h3><p>Environ cinq fois moins cher sur Temu, mais moins stable pour les grands PC.</p><span class="pastille depend">Ça dépend</span></a></li></ul>
+</div></section>
 
-  <div class="bandeau-affil">
-    Transparence : ce site contient des liens affiliés. Si tu achètes via ces liens, je touche une petite commission, sans surcoût pour toi.
-  </div>
-
-  <!-- ===================== INTRO / CONCEPT ===================== -->
-  <section class="hero">
-    <div class="conteneur">
-      <h1>Amazon vs Temu : faut-il vraiment payer plus cher ?</h1>
-      <p>On croit que Temu est toujours moins cher. Parfois oui, de loin. Parfois non : pendant nos recherches, un bras d'écran Temu coûtait plus cher que son équivalent Amazon. Et qu'est-ce que tu perds en route ? On analyse les avis des acheteurs pour te dire honnêtement quand ça vaut le coup de payer plus, et quand ça ne sert à rien.</p>
-      <a href="#sommaire" class="bouton-hero">Voir les comparatifs ↓</a>
-    </div>
-  </section>
-
-  <!-- ===================== MÉTHODE ===================== -->
-  <section>
-    <div class="conteneur">
-      <h2>Notre méthode : des avis réels, pas de faux tests</h2>
-      <p class="sous-titre">On ne prétend pas avoir testé ce qu'on n'a pas testé. Chaque comparatif est une synthèse des avis laissés par les acheteurs, réécrite avec nos mots.</p>
-      <div class="grille-4">
-        <div class="bloc"><strong>📖 On lit les avis</strong>Surtout les avis à 2 et 3 étoiles : ce sont les plus honnêtes sur les vrais défauts.</div>
-        <div class="bloc"><strong>🔁 On garde ce qui revient</strong>Un avis isolé ne compte pas. Un problème cité par beaucoup d'acheteurs, si.</div>
-        <div class="bloc"><strong>🚚 On compare l'après-achat</strong>Délais de livraison, facilité de retour : ce qui compte quand ça se passe mal.</div>
-        <div class="bloc"><strong>📅 On date tout</strong>Chaque synthèse indique combien d'avis ont été lus, et quand.</div>
-      </div>
-      <div class="alerte">
-        <strong>À savoir :</strong> beaucoup de produits vendus sur Amazon sont les mêmes produits génériques que sur Temu, simplement plus chers et livrés plus vite. Amazon n'est donc pas automatiquement synonyme de qualité. C'est justement pour ça qu'on compare.<br><br><strong>Limite honnête :</strong> sur Amazon, on lit les avis mis en avant sur la fiche (une douzaine par produit). Sur Temu, on lit la liste d'avis classée par défaut par la plateforme, qui fait remonter les avis positifs. Les deux sites ont donc tendance à montrer leur meilleur visage : on cherche activement les critiques.
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== SOMMAIRE ===================== -->
-  <section id="sommaire" style="padding-top:0">
-    <div class="conteneur">
-      <h2>Les comparatifs</h2>
-      <p class="sous-titre">Trois accessoires qui changent vraiment un bureau.</p>
-      <div class="sommaire">
-        <a href="#tapis" class="lien-sommaire"><span class="emoji">🖱️</span><h3>Tapis de bureau XXL</h3><p>Le petit prix tient-il dans la durée ?</p></a>
-        <a href="#bras" class="lien-sommaire"><span class="emoji">🖥️</span><h3>Bras articulé pour écran</h3><p>Le produit où il ne faut pas se tromper.</p></a>
-        <a href="#cables" class="lien-sommaire"><span class="emoji">🔌</span><h3>Kit de gestion des câbles</h3><p>Le moins cher suffit-il pour un bureau propre ?</p></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       COMPARATIF 1 : TAPIS DE BUREAU XXL
-       ========================================================= -->
-  <section class="comparatif" id="tapis">
-    <div class="conteneur">
-      <h2>🖱️ Tapis de bureau XXL : Temu ou Amazon ?</h2>
-      <p class="sous-titre">Un tapis XXL couvre la souris et le clavier. Il protège le bureau, réduit le bruit et donne un setup propre. Le vrai critère de qualité ? Les bords.</p>
-
-      <div class="duel">
-        <!-- ----- TEMU ----- -->
-        <article class="fiche temu">
-          <span class="etiquette">🟠 L'option ultra-économique</span>
-          <h3>Tapis XXL Temu</h3>
-                    <p class="modele">Modèle étudié : tapis de bureau extra large à bords surpiqués (vendeur Chasspromo, article « Local ») · 80×40 ou 90×40 cm</p>
-                    <h4>Les points forts</h4>
-          <ul class="plus">
-            <li>Prix très bas</li>
-            <li>Énorme choix de motifs et de designs</li>
-            <li>Idéal pour essayer le format XXL sans risque</li>
-          </ul>
-          <h4>Les points faibles typiques</h4>
-          <ul class="moins">
-            <li>Tapis fin : plusieurs acheteurs le remarquent</li>
-            <li>Produit reçu parfois différent de la photo (matière, couleur)</li>
-            <li>Sur les articles hors « Local », livraison longue et frais d'importation possibles</li>
-          </ul>
-          <div class="avis">
-            <strong>💬 Ce que disent les acheteurs de ce modèle :</strong>
-                        Note de 4,5/5. La plupart des avis sont courts et saluent un emballage soigné et une livraison rapide (cet article part d'un entrepôt local). Les critiques qui reviennent : le tapis est fin, et quelques acheteurs ont reçu un produit qui ne correspondait pas à la photo (matière type cuir au lieu de tissu, gris au lieu de noir, bords non conformes).
-            <span class="source">Synthèse des 50 avis disponibles sur Temu, lus le 19 octobre 2026.</span>
-          </div>
-          <div class="pour-qui"><strong>👉 Pour qui ?</strong> Petit budget, premier setup, ou envie de changer de déco souvent.</div>
-                    <a href="https://www.temu.com/fr/-g-609177405632193.html" class="bouton temu-btn" target="_blank" rel="nofollow noopener">Voir sur Temu →</a>
-          <p class="mention-bouton">Lien vers la fiche produit</p>
-        </article>
-
-        <!-- ----- AMAZON ----- -->
-        <article class="fiche amazon">
-          <span class="etiquette">⭐ L'option confort et rapidité</span>
-          <h3>Tapis XXL Amazon</h3>
-                    <p class="modele">Modèle étudié : Sidorenko Tapis de Souris XXL · 90×40 cm · environ 2 mm d'épaisseur</p>
-                    <h4>Les points forts</h4>
-          <ul class="plus">
-            <li>Livraison rapide (souvent 24 à 48 h avec Prime)</li>
-            <li>Bords cousus, base caoutchouc antidérapante</li>
-            <li>Très bonne glisse saluée par de nombreux acheteurs</li>
-            <li>Plus de 25 000 évaluations, avec une note de 4,6/5</li>
-            <li>Retour simple si le produit déçoit</li>
-          </ul>
-          <h4>Les points faibles typiques</h4>
-          <ul class="moins">
-            <li>Plus cher que le modèle Temu étudié</li>
-            <li>Fin (environ 2 mm) : pas l'effet moelleux d'un tapis épais</li>
-            <li>Léger : peut glisser un peu sur certains bureaux</li>
-          </ul>
-          <div class="avis">
-            <strong>💬 Ce que disent les acheteurs de ce modèle :</strong>
-                        Les acheteurs apprécient la grande surface, la glisse et la tenue dans le temps : un utilisateur dit s'en servir 7 h par jour depuis des mois sans souci. Les réserves : le tapis est fin, les coutures sont propres mais un peu rêches, et l'un d'eux trouve que le tapis, trop léger, bouge légèrement.
-            <span class="source">Synthèse de 13 avis lus sur Amazon (note globale 4,6/5 sur plus de 25 000 évaluations), le 19 octobre 2026.</span>
-          </div>
-          <div class="pour-qui"><strong>👉 Pour qui ?</strong> Tu passes tes journées au bureau et tu veux un tapis qui dure des années.</div>
-                    <a href="https://www.amazon.fr/dp/B07CBHX4DB" class="bouton amazon-btn" target="_blank" rel="nofollow noopener">Voir le prix actuel sur Amazon →</a>
-          <p class="mention-bouton">Lien vers la fiche produit</p>
-        </article>
-      </div>
-
-      <div class="tableau-scroll">
-        <table>
-          <thead><tr><th>Critère</th><th>🟠 Temu</th><th>⭐ Amazon</th></tr></thead>
-          <tbody>
-            <tr><td>Prix</td><td>Très bas</td><td>Plus élevé</td></tr>
-            <tr><td>Livraison</td><td>Rapide pour cet article « Local »</td><td>Rapide avec Prime</td></tr>
-            <tr><td>Conformité à la photo</td><td>Quelques écarts signalés</td><td>Pas de problème majeur signalé</td></tr>
-            <tr><td>Retours</td><td>Possibles, plus lents</td><td>Simples et rapides</td></tr>
-            <tr><td>Choix de designs</td><td>Énorme</td><td>Plus classique</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="checklist">
-        <h3>✅ Avant d'acheter, vérifie :</h3>
-        <ul>
-          <li>Que la description mentionne explicitement des <strong>bords cousus</strong></li>
-          <li>Que les dimensions couvrent ton clavier ET la zone de ta souris</li>
-          <li>Une base en caoutchouc antidérapante</li>
-        </ul>
-      </div>
-
-      <div class="verdict">
-        <h3>Notre verdict</h3>
-        <p><strong>Temu</strong> suffit si tu veux surtout un grand tapis à tout petit prix. Choisis un article marqué « Local » (livraison plus rapide, pas de frais d'importation) et accepte un risque de recevoir un produit un peu différent de la photo.</p>
-        <p><strong>Amazon</strong> vaut le surcoût si tu travailles 8 h par jour dessus et que tu veux pouvoir le renvoyer facilement.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       COMPARATIF 2 : BRAS ARTICULÉ POUR ÉCRAN
-       ========================================================= -->
-  <section class="comparatif" id="bras">
-    <div class="conteneur">
-      <h2>🖥️ Bras articulé pour écran : Temu ou Amazon ?</h2>
-      <p class="sous-titre">C'est le produit de ce site où l'économie peut coûter cher : un bras mal choisi peut s'affaisser ou ne pas tenir ton écran. Ici, la compatibilité compte plus que le prix.</p>
-
-      <div class="duel">
-        <!-- ----- TEMU ----- -->
-        <article class="fiche temu">
-          <span class="etiquette">🟠 L'option ultra-économique</span>
-          <h3>Bras d'écran Temu</h3>
-                    <p class="modele">Modèle étudié : bras à ressort à gaz en alliage d'aluminium (vendeur MyDoHome, réf. NU60912) · écrans de 13 à 32 pouces</p>
-                    <h4>Les points forts</h4>
-          <ul class="plus">
-            <li>Plus de 13 000 ventes et une note de 4,7/5</li>
-            <li>Montage jugé facile et bras jugé solide, même avec de grands écrans</li>
-          </ul>
-          <h4>Les points faibles typiques</h4>
-          <ul class="moins">
-            <li>Livraison très longue : souvent autour d'un mois, et une estimation de 5 à 8 semaines le jour de notre relevé</li>
-            <li>Frais d'importation ajoutés au paiement (expédié hors UE)</li>
-            <li>Mouvements parfois durs, réglage « sensible »</li>
-            <li>Pas moins cher que le modèle Amazon étudié le jour de notre relevé</li>
-          </ul>
-          <div class="avis">
-            <strong>💬 Ce que disent les acheteurs de ce modèle :</strong>
-                        Les avis sont très positifs sur la solidité et le montage, y compris pour des écrans de 34 pouces. Le reproche numéro un, et de loin, c'est le délai de livraison (un mois, parfois plus). Quelques acheteurs trouvent la rotation difficile, et l'un d'eux a reçu le cache-câbles cassé.
-            <span class="source">Synthèse de 70 avis lus sur Temu (sur 1 021, note 4,7/5), le 19 octobre 2026.</span>
-          </div>
-          <div class="pour-qui"><strong>👉 Pour qui ?</strong> Tu n'es pas pressé du tout et tu veux un bras bien noté.</div>
-          <a href="https://www.temu.com/fr/-g-601099542421307.html" class="bouton temu-btn" target="_blank" rel="nofollow noopener">Voir sur Temu →</a>
-          <p class="mention-bouton">Lien vers la fiche produit</p>
-        </article>
-
-        <!-- ----- AMAZON ----- -->
-        <article class="fiche amazon">
-          <span class="etiquette">⭐ L'option confort et rapidité</span>
-          <h3>Bras d'écran Amazon</h3>
-                    <p class="modele">Modèle étudié : GRIFEMA GB2003-1 · VESA 75×75 et 100×100 · jusqu'à 9 kg · écrans de 13 à 32 pouces</p>
-                    <h4>Les points forts</h4>
-          <ul class="plus">
-            <li>Montage simple, bras jugé solide et stable</li>
-            <li>Fiche claire : VESA, poids maximum, deux modes de fixation</li>
-            <li>Livraison rapide et retour simple si incompatible</li>
-            <li>Plus de 5 600 évaluations, avec une note de 4,4/5</li>
-          </ul>
-          <h4>Les points faibles typiques</h4>
-          <ul class="moins">
-            <li>Réglage de la tension contre-intuitif : il faut dévisser pour durcir</li>
-            <li>Écran qui « pique du nez » s'il est mal réglé</li>
-            <li>Environ 6 % d'avis à 1 étoile : quelques bras défectueux signalés</li>
-            <li>Passe-câbles limité à environ 2 câbles</li>
-          </ul>
-          <div class="avis">
-            <strong>💬 Ce que disent les acheteurs de ce modèle :</strong>
-                        Les acheteurs louent le rapport qualité-prix, la stabilité et la facilité de montage, avec des écrans de 24 à 27 pouces. Le point qui revient : la tension se règle à l'envers de ce qu'on croit, et beaucoup de plaintes viennent de là. Plus rarement : un pied de fixation un peu fin, des craquements, ou un bras défectueux dès la réception.
-            <span class="source">Synthèse de 13 avis lus sur Amazon (note globale 4,4/5 sur plus de 5 600 évaluations), le 19 octobre 2026.</span>
-          </div>
-          <div class="pour-qui"><strong>👉 Pour qui ?</strong> Presque tout le monde, surtout si tu veux pouvoir le renvoyer facilement.</div>
-          <a href="https://www.amazon.fr/dp/B0BY7QST59" class="bouton amazon-btn" target="_blank" rel="nofollow noopener">Voir le prix actuel sur Amazon →</a>
-          <p class="mention-bouton">Lien vers la fiche produit</p>
-        </article>
-      </div>
-
-      <div class="tableau-scroll">
-        <table>
-          <thead><tr><th>Critère</th><th>🟠 Temu</th><th>⭐ Amazon</th></tr></thead>
-          <tbody>
-            <tr><td>Prix (19 oct. 2026)</td><td>Pas moins cher, plus frais d'importation</td><td>Légèrement moins cher</td></tr>
-            <tr><td>Délai de livraison</td><td>Environ 1 mois ou plus</td><td>Quelques jours</td></tr>
-            <tr><td>Solidité selon les avis</td><td>Très bonne</td><td>Bonne, quelques exemplaires défectueux</td></tr>
-            <tr><td>Retour si incompatible</td><td>Long</td><td>Rapide</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="checklist">
-        <h3>✅ Avant d'acheter, vérifie (quel que soit le site) :</h3>
-        <ul>
-          <li>Que l'arrière de ton écran a des trous <strong>VESA</strong> (75×75 ou 100×100 mm le plus souvent)</li>
-          <li>Le <strong>poids de ton écran sans son pied</strong> : il doit être dans la plage indiquée par le bras</li>
-          <li>L'<strong>épaisseur de ton bureau</strong> : la pince doit pouvoir s'y fixer</li>
-          <li>La taille d'écran maximale acceptée</li>
-        </ul>
-      </div>
-
-      <div class="verdict">
-        <h3>Notre verdict</h3>
-        <p>La surprise de ce comparatif : <strong>Temu n'est pas le moins cher ici</strong>. Le jour de notre relevé, le bras Temu coûtait plus cher que le bras Amazon, avec des frais d'importation en plus et plus d'un mois d'attente.</p>
-        <p><strong>Amazon</strong> l'emporte clairement : prix, délai, retour facile. Seule condition : lis bien l'étiquette de réglage de la tension avant de crier au défaut.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- =========================================================
-       COMPARATIF 3 : KIT DE GESTION DES CÂBLES
-       ========================================================= -->
-  <section class="comparatif" id="cables">
-    <div class="conteneur">
-      <h2>🔌 Kit de gestion des câbles : Temu ou Amazon ?</h2>
-      <p class="sous-titre">Attaches, clips, gaines, goulottes, bac sous le bureau... Ici, la différence entre les deux sites est souvent minime. Le vrai critère : l'adhésif.</p>
-
-      <div class="duel">
-        <!-- ----- TEMU ----- -->
-        <article class="fiche temu">
-          <span class="etiquette">🟠 L'option ultra-économique</span>
-          <h3>Kit câbles Temu</h3>
-                    <p class="modele">Modèle étudié : kit de gestion de câbles 282, 352 ou 367 pièces (gaines, clips, attaches, serre-câbles)</p>
-                    <h4>Les points forts</h4>
-          <ul class="plus">
-            <li>Prix très bas pour énormément de pièces</li>
-            <li>Plus de 14 000 ventes et une note de 4,9/5</li>
-            <li>Kit très complet selon les acheteurs</li>
-          </ul>
-          <h4>Les points faibles typiques</h4>
-          <ul class="moins">
-            <li>Adhésif qui ne tient pas toujours, surtout sur les barrettes rigides</li>
-            <li>Tellement de pièces qu'on ne sait pas toujours à quoi elles servent</li>
-            <li>Frais d'importation ajoutés au paiement (expédié hors UE)</li>
-          </ul>
-          <div class="avis">
-            <strong>💬 Ce que disent les acheteurs de ce modèle :</strong>
-                        L'immense majorité des avis est enthousiaste : beaucoup de pièces pour presque rien. La critique qui revient : l'adhésif ne colle pas toujours bien, notamment sur les barrettes rigides. Quelques acheteurs avouent aussi ne pas savoir à quoi servent certaines pièces.
-            <span class="source">Synthèse de 74 avis lus sur Temu (sur 1 044, note 4,9/5), le 19 octobre 2026.</span>
-          </div>
-          <div class="pour-qui"><strong>👉 Pour qui ?</strong> Tu veux un maximum de pièces pour un minimum d'argent, et tu n'es pas pressé.</div>
-          <a href="https://www.temu.com/fr/-g-601099624659365.html" class="bouton temu-btn" target="_blank" rel="nofollow noopener">Voir sur Temu →</a>
-          <p class="mention-bouton">Lien vers la fiche produit</p>
-        </article>
-
-        <!-- ----- AMAZON ----- -->
-        <article class="fiche amazon">
-          <span class="etiquette">⭐ L'option confort et rapidité</span>
-          <h3>Kit câbles Amazon</h3>
-                    <p class="modele">Modèle étudié : SOULWIT kit 200 pièces (4 gaines, 3 organisateurs, 12 attaches, 15 clips adhésifs, 100 serre-câbles)</p>
-                    <h4>Les points forts</h4>
-          <ul class="plus">
-            <li>Adhésif qui tient bien selon plusieurs acheteurs, même avec des câbles tendus</li>
-            <li>Plus de 8 000 évaluations, avec une note de 4,7/5</li>
-            <li>Livraison rapide pour finir ton setup le week-end</li>
-          </ul>
-          <h4>Les points faibles typiques</h4>
-          <ul class="moins">
-            <li>Nettement plus cher que le kit Temu</li>
-            <li>Moins de pièces</li>
-            <li>Un acheteur a reçu des clips sans partie adhésive</li>
-          </ul>
-          <div class="avis">
-            <strong>💬 Ce que disent les acheteurs de ce modèle :</strong>
-                        Les avis sont presque tous très positifs : kit complet, pratique, et surtout un adhésif qui tient, un point cité plusieurs fois. Le seul défaut relevé dans notre lecture : un acheteur a trouvé 4 clips sur 15 sans adhésif.
-            <span class="source">Synthèse de 13 avis lus sur Amazon (note globale 4,7/5 sur plus de 8 000 évaluations), le 19 octobre 2026.</span>
-          </div>
-          <div class="pour-qui"><strong>👉 Pour qui ?</strong> Tu veux que les clips collés restent en place, et tout recevoir en quelques jours.</div>
-          <a href="https://www.amazon.fr/dp/B0928VJDZ3" class="bouton amazon-btn" target="_blank" rel="nofollow noopener">Voir le prix actuel sur Amazon →</a>
-          <p class="mention-bouton">Lien vers la fiche produit</p>
-        </article>
-      </div>
-
-      <div class="tableau-scroll">
-        <table>
-          <thead><tr><th>Critère</th><th>🟠 Temu</th><th>⭐ Amazon</th></tr></thead>
-          <tbody>
-            <tr><td>Prix</td><td>Très bas</td><td>Plus élevé</td></tr>
-            <tr><td>Nombre de pièces</td><td>282 à 367</td><td>200</td></tr>
-            <tr><td>Tenue de l'adhésif</td><td>Critiquée par plusieurs acheteurs</td><td>Saluée par plusieurs acheteurs</td></tr>
-            <tr><td>Frais d'importation</td><td>Oui, ajoutés au paiement</td><td>Non</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div class="checklist">
-        <h3>✅ Conseils de pose :</h3>
-        <ul>
-          <li>Nettoie la surface avant de coller, et attends quelques heures avant d'y fixer les câbles</li>
-          <li>Pour une multiprise ou un poids important, préfère une fixation <strong>à visser</strong></li>
-          <li>Laisse de l'air autour des blocs d'alimentation qui chauffent</li>
-        </ul>
-      </div>
-
-      <div class="verdict">
-        <h3>Notre verdict</h3>
-        <p>C'est le produit où <strong>Temu a le plus d'arguments</strong> : bien plus de pièces pour bien moins cher. Si tu utilises surtout des attaches et des serre-câbles, c'est largement suffisant.</p>
-        <p>Si tu comptes sur des <strong>clips collés</strong> sous le bureau, l'adhésif du kit Amazon a meilleure réputation. Et pour une multiprise, préfère de toute façon une fixation à visser.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===================== FAQ ===================== -->
-  <section id="faq">
-    <div class="conteneur">
-      <h2>Questions fréquentes</h2>
-      <details>
-        <summary>Avez-vous testé ces produits ?</summary>
-        <p>Non, sauf mention contraire. Nos comparatifs sont des synthèses des avis d'acheteurs, avec le nombre d'avis lus et la date. Quand on teste un produit nous-mêmes, on l'indique clairement.</p>
-      </details>
-      <details>
-        <summary>Les produits Temu sont-ils de mauvaise qualité ?</summary>
-        <p>Pas forcément. Beaucoup sont les mêmes produits génériques que ceux vendus sur Amazon. La différence se joue surtout sur la livraison, les retours et la régularité des finitions.</p>
-      </details>
-      <details>
-        <summary>Pourquoi ne pas afficher les prix ?</summary>
-        <p>Les prix changent tout le temps. Pour ne jamais t'afficher un prix faux, on te renvoie vers le prix actuel sur chaque site.</p>
-      </details>
-      <details>
-        <summary>Les liens affiliés influencent-ils vos avis ?</summary>
-        <p>Non. On touche une commission sur les deux sites, donc on n'a aucun intérêt à favoriser l'un plutôt que l'autre. Notre seul intérêt, c'est que tu reviennes.</p>
-      </details>
-    </div>
-  </section>
-
-  <!-- ===================== PIED DE PAGE ===================== -->
-  <footer>
-    <div class="conteneur">
-      <p><strong>Affiliation :</strong> Setup Malin contient des liens affiliés. Si tu achètes via ces liens, je peux toucher une commission, sans aucun surcoût pour toi. Cela ne change pas nos avis.</p>
-      <p>En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises.</p>
-            <p><strong>Éditeur :</strong> Setup Malin (site personnel) · <strong>Hébergeur :</strong> GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis</p>
-      <p>© 2026 Setup Malin</p>
-    </div>
-  </footer>
-
+<section class="section" id="methode"><div class="conteneur">
+<h2>Notre méthode</h2>
+<p class="intro">On ne teste pas les produits nous-mêmes, et on ne fait pas semblant. Chaque comparatif est une synthèse d'avis réels, réécrite avec nos mots.</p>
+<div class="methode">
+<div><h3>On lit les critiques</h3><p>Les avis négatifs et moyens disent plus que les avis à 5 étoiles.</p></div>
+<div><h3>On garde ce qui revient</h3><p>Un avis isolé ne compte pas. Un défaut cité par plusieurs acheteurs, si.</p></div>
+<div><h3>On compte l'après-achat</h3><p>Délai, frais d'importation, retours : ce qui compte quand ça se passe mal.</p></div>
+<div><h3>On date tout</h3><p>Chaque synthèse indique combien d'avis ont été lus, et quand.</p></div>
+</div>
+<details><summary>Une limite à connaître</summary><p>Amazon et Temu choisissent les avis qu'ils mettent en avant, souvent les plus positifs. Quand c'est possible, on lit les avis les plus récents plutôt que les « recommandés », et on cherche activement les critiques.</p></details>
+<details><summary>Pourquoi pas de prix affichés ?</summary><p>Les prix changent tout le temps. On donne des écarts relevés à une date précise, et on te renvoie vers le prix actuel sur chaque site.</p></details>
+<details><summary>Amazon, c'est forcément mieux ?</summary><p>Non. Beaucoup de produits vendus sur Amazon sont les mêmes produits génériques que sur Temu, plus chers et livrés plus vite. C'est justement pour ça qu'on compare.</p></details>
+</div></section>
+</main>
+<footer class="pied"><div class="conteneur">
+<p>Setup Malin compare honnêtement les accessoires de bureau vendus sur Amazon et Temu, à partir des avis d'acheteurs. Aucun avis n'est inventé, aucun test n'est simulé.</p>
+<p>En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises.</p>
+<p><a href="mentions-legales.html">Mentions légales</a> · Dernière mise à jour : 19 octobre 2026</p>
+</div></footer>
 </body>
 </html>
