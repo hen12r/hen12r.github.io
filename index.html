@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Setup Malin – Amazon ou Temu pour ton bureau ? Comparatifs honnêtes</title>
+  <meta name="description" content="Tapis XXL, bras d'écran, gestion des câbles : on compare Amazon et Temu à partir des avis d'acheteurs, sans faux tests. Pour savoir si ça vaut le coup de payer plus.">
+  <style>
+    :root {
+      --fond: #f8fafc; --texte: #1e293b; --gris: #64748b; --carte: #ffffff;
+      --bordure: #e2e8f0; --sombre: #0f172a; --bleu: #2563eb; --violet: #7c3aed;
+      --amazon: #ff9900; --temu: #fb7701; --vert: #16a34a; --rouge: #dc2626; --jaune: #fef9c3;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; line-height: 1.65; color: var(--texte); background: var(--fond); }
+    .conteneur { max-width: 1060px; margin: 0 auto; padding: 0 16px; }
+    a { color: var(--bleu); }
+
+    /* En-tête */
+    header { background: var(--sombre); padding: 14px 0; position: sticky; top: 0; z-index: 10; }
+    header .conteneur { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .logo { color: #fff; font-weight: 800; font-size: 1.3rem; text-decoration: none; }
+    .logo span { color: var(--amazon); }
+    nav a { color: #cbd5e1; text-decoration: none; margin-left: 18px; font-size: 0.93rem; }
+    nav a:hover { color: #fff; }
+
+    .bandeau-affil { background: var(--jaune); color: #713f12; font-size: 0.85rem; text-align: center; padding: 8px 16px; }
+
+    /* Intro */
+    .hero { background: linear-gradient(135deg, var(--bleu), var(--violet)); color: #fff; padding: 72px 0 64px; text-align: center; }
+    .hero h1 { font-size: 2.3rem; line-height: 1.2; margin-bottom: 18px; }
+    .hero p { max-width: 700px; margin: 0 auto 28px; font-size: 1.1rem; opacity: 0.95; }
+    .bouton-hero { display: inline-block; background: #fff; color: var(--bleu); font-weight: 700; padding: 14px 28px; border-radius: 999px; text-decoration: none; }
+
+    section { padding: 56px 0; }
+    h2 { font-size: 1.7rem; margin-bottom: 12px; line-height: 1.3; }
+    .sous-titre { color: var(--gris); margin-bottom: 32px; max-width: 760px; }
+
+    /* Méthode */
+    .grille-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+    .bloc { background: var(--carte); border: 1px solid var(--bordure); border-radius: 14px; padding: 22px; }
+    .bloc strong { display: block; margin-bottom: 6px; font-size: 1.05rem; }
+    .alerte { margin-top: 24px; background: #eff6ff; border-left: 5px solid var(--bleu); border-radius: 10px; padding: 18px 20px; }
+
+    /* Sommaire */
+    .sommaire { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+    .lien-sommaire { display: block; background: var(--carte); border: 1px solid var(--bordure); border-radius: 16px; padding: 24px; text-decoration: none; color: var(--texte); transition: transform 0.15s, box-shadow 0.15s; }
+    .lien-sommaire:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(15,23,42,0.08); }
+    .lien-sommaire .emoji { font-size: 2rem; }
+    .lien-sommaire h3 { margin: 8px 0 4px; }
+    .lien-sommaire p { color: var(--gris); font-size: 0.93rem; }
+
+    /* Comparatifs */
+    .comparatif:nth-of-type(odd) { background: #eef2ff; }
+    .duel { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .fiche { background: var(--carte); border-radius: 18px; padding: 28px; box-shadow: 0 4px 18px rgba(15,23,42,0.08); display: flex; flex-direction: column; border-top: 6px solid; }
+    .fiche.temu { border-color: var(--temu); }
+    .fiche.amazon { border-color: var(--amazon); }
+    .etiquette { align-self: flex-start; font-size: 0.8rem; font-weight: 700; padding: 4px 12px; border-radius: 999px; margin-bottom: 14px; color: #fff; }
+    .temu .etiquette { background: var(--temu); }
+    .amazon .etiquette { background: var(--sombre); }
+    .fiche h3 { font-size: 1.3rem; margin-bottom: 6px; }
+    .modele { color: var(--gris); font-size: 0.9rem; margin-bottom: 18px; }
+    .photo { background: #f1f5f9; border: 2px dashed var(--bordure); border-radius: 12px; height: 160px; display: flex; align-items: center; justify-content: center; color: var(--gris); font-size: 0.9rem; margin-bottom: 18px; text-align: center; padding: 10px; }
+    .fiche h4 { font-size: 0.95rem; margin: 14px 0 8px; }
+    .fiche ul { list-style: none; }
+    .fiche li { padding-left: 28px; position: relative; margin-bottom: 8px; }
+    .plus li::before { content: "✔"; color: var(--vert); position: absolute; left: 4px; font-weight: 700; }
+    .moins li::before { content: "✘"; color: var(--rouge); position: absolute; left: 4px; font-weight: 700; }
+    .avis { background: #f8fafc; border: 1px solid var(--bordure); border-radius: 10px; padding: 14px; margin-top: 16px; font-size: 0.93rem; }
+    .avis .source { display: block; color: var(--gris); font-size: 0.8rem; margin-top: 8px; }
+    .pour-qui { background: #f0fdf4; border-radius: 10px; padding: 14px; margin: 16px 0 22px; font-size: 0.95rem; }
+    .bouton { margin-top: auto; display: block; text-align: center; font-weight: 800; font-size: 1.05rem; padding: 16px; border-radius: 12px; text-decoration: none; transition: transform 0.15s, box-shadow 0.15s; }
+    .bouton:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.15); }
+    .temu-btn { background: var(--temu); color: #fff; }
+    .amazon-btn { background: var(--amazon); color: var(--sombre); }
+    .mention-bouton { text-align: center; font-size: 0.78rem; color: var(--gris); margin-top: 8px; }
+
+    /* Tableau */
+    .tableau-scroll { overflow-x: auto; margin-top: 36px; }
+    table { width: 100%; border-collapse: collapse; background: var(--carte); border-radius: 14px; overflow: hidden; min-width: 560px; }
+    th, td { padding: 13px 16px; text-align: left; border-bottom: 1px solid var(--bordure); }
+    th { background: var(--sombre); color: #fff; font-size: 0.95rem; }
+    tr:last-child td { border-bottom: none; }
+    td:first-child { font-weight: 600; }
+
+    /* Verdict et checklist */
+    .verdict { background: var(--sombre); color: #e2e8f0; border-radius: 18px; padding: 28px; margin-top: 32px; }
+    .verdict h3 { color: #fff; margin-bottom: 12px; }
+    .verdict p { margin-bottom: 10px; }
+    .verdict strong { color: #fff; }
+    .checklist { background: var(--carte); border: 1px solid var(--bordure); border-radius: 14px; padding: 22px; margin-top: 24px; }
+    .checklist h3 { margin-bottom: 10px; font-size: 1.1rem; }
+    .checklist li { margin: 0 0 8px 20px; }
+
+    /* FAQ */
+    details { background: var(--carte); border: 1px solid var(--bordure); border-radius: 12px; padding: 16px 20px; margin-bottom: 12px; }
+    summary { font-weight: 700; cursor: pointer; }
+    details p { margin-top: 10px; color: var(--gris); }
+
+    /* Pied de page */
+    footer { background: var(--sombre); color: #94a3b8; padding: 40px 0; font-size: 0.88rem; }
+    footer p { margin-bottom: 10px; }
+    footer strong { color: #e2e8f0; }
+
+    @media (max-width: 640px) {
+      .hero { padding: 52px 0 46px; }
+      .hero h1 { font-size: 1.7rem; }
+      h2 { font-size: 1.4rem; }
+      nav a { margin-left: 0; margin-right: 14px; }
+      .fiche { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== EN-TÊTE ===================== -->
+  <header>
+    <div class="conteneur">
+      <a href="#" class="logo">Setup<span>Malin</span></a>
+      <nav>
+        <a href="#tapis">Tapis XXL</a>
+        <a href="#bras">Bras d'écran</a>
+        <a href="#cables">Câbles</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="bandeau-affil">
+    Transparence : ce site contient des liens affiliés. Si tu achètes via ces liens, je touche une petite commission, sans surcoût pour toi.
+  </div>
+
+  <!-- ===================== INTRO / CONCEPT ===================== -->
+  <section class="hero">
+    <div class="conteneur">
+      <h1>Amazon vs Temu : faut-il vraiment payer plus cher ?</h1>
+      <p>Le même type d'accessoire de bureau coûte souvent 2 à 3 fois moins cher sur Temu. Mais qu'est-ce que tu perds en route ? On analyse les avis des acheteurs pour te dire honnêtement quand ça vaut le coup de payer plus, et quand ça ne sert à rien.</p>
+      <a href="#sommaire" class="bouton-hero">Voir les comparatifs ↓</a>
+    </div>
+  </section>
+
+  <!-- ===================== MÉTHODE ===================== -->
+  <section>
+    <div class="conteneur">
+      <h2>Notre méthode : des avis réels, pas de faux tests</h2>
+      <p class="sous-titre">On ne prétend pas avoir testé ce qu'on n'a pas testé. Chaque comparatif est une synthèse des avis laissés par les acheteurs, réécrite avec nos mots.</p>
+      <div class="grille-4">
+        <div class="bloc"><strong>📖 On lit les avis</strong>Surtout les avis à 2 et 3 étoiles : ce sont les plus honnêtes sur les vrais défauts.</div>
+        <div class="bloc"><strong>🔁 On garde ce qui revient</strong>Un avis isolé ne compte pas. Un problème cité par beaucoup d'acheteurs, si.</div>
+        <div class="bloc"><strong>🚚 On compare l'après-achat</strong>Délais de livraison, facilité de retour : ce qui compte quand ça se passe mal.</div>
+        <div class="bloc"><strong>📅 On date tout</strong>Chaque synthèse indique combien d'avis ont été lus, et quand.</div>
+      </div>
+      <div class="alerte">
+        <strong>À savoir :</strong> beaucoup de produits vendus sur Amazon sont les mêmes produits génériques que sur Temu, simplement plus chers et livrés plus vite. Amazon n'est donc pas automatiquement synonyme de qualité. C'est justement pour ça qu'on compare.
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SOMMAIRE ===================== -->
+  <section id="sommaire" style="padding-top:0">
+    <div class="conteneur">
+      <h2>Les comparatifs</h2>
+      <p class="sous-titre">Trois accessoires qui changent vraiment un bureau.</p>
+      <div class="sommaire">
+        <a href="#tapis" class="lien-sommaire"><span class="emoji">🖱️</span><h3>Tapis de bureau XXL</h3><p>Le petit prix tient-il dans la durée ?</p></a>
+        <a href="#bras" class="lien-sommaire"><span class="emoji">🖥️</span><h3>Bras articulé pour écran</h3><p>Le produit où il ne faut pas se tromper.</p></a>
+        <a href="#cables" class="lien-sommaire"><span class="emoji">🔌</span><h3>Kit de gestion des câbles</h3><p>Le moins cher suffit-il pour un bureau propre ?</p></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       COMPARATIF 1 : TAPIS DE BUREAU XXL
+       ========================================================= -->
+  <section class="comparatif" id="tapis">
+    <div class="conteneur">
+      <h2>🖱️ Tapis de bureau XXL : Temu ou Amazon ?</h2>
+      <p class="sous-titre">Un tapis XXL couvre la souris et le clavier. Il protège le bureau, réduit le bruit et donne un setup propre. Le vrai critère de qualité ? Les bords.</p>
+
+      <div class="duel">
+        <!-- ----- TEMU ----- -->
+        <article class="fiche temu">
+          <span class="etiquette">🟠 L'option ultra-économique</span>
+          <h3>Tapis XXL Temu</h3>
+          <!-- ✏️ À COMPLÉTER -->
+          <p class="modele">Modèle : [nom exact] · [dimensions] · [épaisseur]</p>
+          <div class="photo">📷 Photo du produit (la tienne ou une image autorisée)</div>
+          <h4>Les points forts</h4>
+          <ul class="plus">
+            <li>Prix très bas</li>
+            <li>Énorme choix de motifs et de designs</li>
+            <li>Idéal pour essayer le format XXL sans risque</li>
+          </ul>
+          <h4>Les points faibles typiques</h4>
+          <ul class="moins">
+            <li>Livraison souvent plus longue (plus d'une semaine)</li>
+            <li>Bords pas toujours cousus : risque d'effilochage</li>
+            <li>Souvent plus fin, donc moins confortable</li>
+            <li>Odeur de caoutchouc fréquente au déballage</li>
+          </ul>
+          <div class="avis">
+            <strong>💬 Ce que disent les acheteurs de ce modèle :</strong>
+            <!-- ✏️ À COMPLÉTER : résume avec TES mots ce qui revient dans les avis -->
+            [Ta synthèse en 2-3 phrases : ce que les acheteurs apprécient, ce qu'ils reprochent le plus souvent.]
+            <span class="source">Synthèse de [nombre] avis lus sur Temu, le [date].</span>
+          </div>
+          <div class="pour-qui"><strong>👉 Pour qui ?</strong> Petit budget, premier setup, ou envie de changer de déco souvent.</div>
+          <!-- ✏️ À REMPLACER : ton lien affilié Temu -->
+          <a href="LIEN_TEMU_TAPIS" class="bouton temu-btn" target="_blank" rel="sponsored nofollow noopener">Voir sur Temu →</a>
+          <p class="mention-bouton">Lien affilié</p>
+        </article>
+
+        <!-- ----- AMAZON ----- -->
+        <article class="fiche amazon">
+          <span class="etiquette">⭐ L'option confort et rapidité</span>
+          <h3>Tapis XXL Amazon</h3>
+          <!-- ✏️ À COMPLÉTER -->
+          <p class="modele">Modèle : [nom exact] · [dimensions] · [épaisseur]</p>
+          <div class="photo">📷 Photo du produit (la tienne ou une image autorisée)</div>
+          <h4>Les points forts</h4>
+          <ul class="plus">
+            <li>Livraison rapide (souvent 24 à 48 h avec Prime)</li>
+            <li>Modèles à bords cousus faciles à trouver</li>
+            <li>Choix de tapis plus épais pour le confort</li>
+            <li>Retour simple si le produit déçoit</li>
+          </ul>
+          <h4>Les points faibles typiques</h4>
+          <ul class="moins">
+            <li>Plus cher, parfois 2 à 3 fois le prix Temu</li>
+            <li>Designs plus classiques</li>
+            <li>Certains modèles sont les mêmes génériques que sur Temu</li>
+          </ul>
+          <div class="avis">
+            <strong>💬 Ce que disent les acheteurs de ce modèle :</strong>
+            <!-- ✏️ À COMPLÉTER -->
+            [Ta synthèse en 2-3 phrases, avec tes mots. Pas de copier-coller d'avis Amazon.]
+            <span class="source">Synthèse de [nombre] avis lus sur Amazon, le [date].</span>
+          </div>
+          <div class="pour-qui"><strong>👉 Pour qui ?</strong> Tu passes tes journées au bureau et tu veux un tapis qui dure des années.</div>
+          <!-- ✏️ À REMPLACER : ton lien affilié Amazon -->
+          <a href="LIEN_AMAZON_TAPIS" class="bouton amazon-btn" target="_blank" rel="sponsored nofollow noopener">Voir le prix actuel sur Amazon →</a>
+          <p class="mention-bouton">Lien affilié</p>
+        </article>
+      </div>
+
+      <div class="tableau-scroll">
+        <table>
+          <thead><tr><th>Critère</th><th>🟠 Temu</th><th>⭐ Amazon</th></tr></thead>
+          <tbody>
+            <tr><td>Prix</td><td>Très bas</td><td>Plus élevé</td></tr>
+            <tr><td>Livraison</td><td>Lente</td><td>Rapide avec Prime</td></tr>
+            <tr><td>Bords cousus</td><td>Variable, à vérifier</td><td>Plus facile à trouver</td></tr>
+            <tr><td>Retours</td><td>Possibles, plus lents</td><td>Simples et rapides</td></tr>
+            <tr><td>Choix de designs</td><td>Énorme</td><td>Plus classique</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="checklist">
+        <h3>✅ Avant d'acheter, vérifie :</h3>
+        <ul>
+          <li>Que la description mentionne explicitement des <strong>bords cousus</strong></li>
+          <li>Que les dimensions couvrent ton clavier ET la zone de ta souris</li>
+          <li>Une base en caoutchouc antidérapante</li>
+        </ul>
+      </div>
+
+      <div class="verdict">
+        <h3>Notre verdict</h3>
+        <p><strong>Temu</strong> suffit si tu veux surtout un look sympa à petit prix, à condition que les bords soient cousus.</p>
+        <p><strong>Amazon</strong> vaut le surcoût si tu travailles 8 h par jour dessus et que tu veux pouvoir le renvoyer facilement.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       COMPARATIF 2 : BRAS ARTICULÉ POUR ÉCRAN
+       ========================================================= -->
+  <section class="comparatif" id="bras">
+    <div class="conteneur">
+      <h2>🖥️ Bras articulé pour écran : Temu ou Amazon ?</h2>
+      <p class="sous-titre">C'est le produit de ce site où l'économie peut coûter cher : un bras mal choisi peut s'affaisser ou ne pas tenir ton écran. Ici, la compatibilité compte plus que le prix.</p>
+
+      <div class="duel">
+        <!-- ----- TEMU ----- -->
+        <article class="fiche temu">
+          <span class="etiquette">🟠 L'option ultra-économique</span>
+          <h3>Bras d'écran Temu</h3>
+          <!-- ✏️ À COMPLÉTER -->
+          <p class="modele">Modèle : [nom exact] · VESA [75×75 / 100×100] · Poids max [X kg] · Écran [X à X pouces]</p>
+          <div class="photo">📷 Photo du produit (la tienne ou une image autorisée)</div>
+          <h4>Les points forts</h4>
+          <ul class="plus">
+            <li>Prix très bas pour libérer de la place sur le bureau</li>
+            <li>Suffisant pour un petit écran léger qu'on bouge rarement</li>
+          </ul>
+          <h4>Les points faibles typiques</h4>
+          <ul class="moins">
+            <li>Réglage du ressort (tension) souvent difficile</li>
+            <li>Risque d'affaissement de l'écran avec le temps</li>
+            <li>Pince de fixation parfois moins solide</li>
+            <li>Notice peu claire, vis manquantes signalées</li>
+            <li>Livraison longue : un retour prend du temps</li>
+          </ul>
+          <div class="avis">
+            <strong>💬 Ce que disent les acheteurs de ce modèle :</strong>
+            <!-- ✏️ À COMPLÉTER -->
+            [Ta synthèse en 2-3 phrases. Cherche surtout les mentions d'affaissement et de solidité.]
+            <span class="source">Synthèse de [nombre] avis lus sur Temu, le [date].</span>
+          </div>
+          <div class="pour-qui"><strong>👉 Pour qui ?</strong> Petit écran léger, position fixe, budget très serré.</div>
+          <a href="LIEN_TEMU_BRAS" class="bouton temu-btn" target="_blank" rel="sponsored nofollow noopener">Voir sur Temu →</a>
+          <p class="mention-bouton">Lien affilié</p>
+        </article>
+
+        <!-- ----- AMAZON ----- -->
+        <article class="fiche amazon">
+          <span class="etiquette">⭐ L'option confort et rapidité</span>
+          <h3>Bras d'écran Amazon</h3>
+          <!-- ✏️ À COMPLÉTER -->
+          <p class="modele">Modèle : [nom exact] · VESA [75×75 / 100×100] · Poids max [X kg] · Écran [X à X pouces]</p>
+          <div class="photo">📷 Photo du produit (la tienne ou une image autorisée)</div>
+          <h4>Les points forts</h4>
+          <ul class="plus">
+            <li>Choix de modèles à vérin à gaz plus fluides à régler</li>
+            <li>Fiches produit souvent plus détaillées (poids, VESA, épaisseur du bureau)</li>
+            <li>Livraison rapide et retour simple si incompatible</li>
+            <li>Passe-câbles intégré sur beaucoup de modèles</li>
+          </ul>
+          <h4>Les points faibles typiques</h4>
+          <ul class="moins">
+            <li>Nettement plus cher</li>
+            <li>Les modèles d'entrée de gamme ont les mêmes défauts que Temu</li>
+          </ul>
+          <div class="avis">
+            <strong>💬 Ce que disent les acheteurs de ce modèle :</strong>
+            <!-- ✏️ À COMPLÉTER -->
+            [Ta synthèse en 2-3 phrases, avec tes mots.]
+            <span class="source">Synthèse de [nombre] avis lus sur Amazon, le [date].</span>
+          </div>
+          <div class="pour-qui"><strong>👉 Pour qui ?</strong> Écran lourd ou grand, ou si tu bouges souvent ton écran.</div>
+          <a href="LIEN_AMAZON_BRAS" class="bouton amazon-btn" target="_blank" rel="sponsored nofollow noopener">Voir le prix actuel sur Amazon →</a>
+          <p class="mention-bouton">Lien affilié</p>
+        </article>
+      </div>
+
+      <div class="tableau-scroll">
+        <table>
+          <thead><tr><th>Critère</th><th>🟠 Temu</th><th>⭐ Amazon</th></tr></thead>
+          <tbody>
+            <tr><td>Prix</td><td>Très bas</td><td>Plus élevé</td></tr>
+            <tr><td>Fluidité du réglage</td><td>Souvent limitée</td><td>Meilleure sur les modèles à vérin</td></tr>
+            <tr><td>Infos de compatibilité</td><td>Parfois incomplètes</td><td>Souvent plus détaillées</td></tr>
+            <tr><td>Retour si incompatible</td><td>Long</td><td>Rapide</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="checklist">
+        <h3>✅ Avant d'acheter, vérifie (quel que soit le site) :</h3>
+        <ul>
+          <li>Que l'arrière de ton écran a des trous <strong>VESA</strong> (75×75 ou 100×100 mm le plus souvent)</li>
+          <li>Le <strong>poids de ton écran sans son pied</strong> : il doit être dans la plage indiquée par le bras</li>
+          <li>L'<strong>épaisseur de ton bureau</strong> : la pince doit pouvoir s'y fixer</li>
+          <li>La taille d'écran maximale acceptée</li>
+        </ul>
+      </div>
+
+      <div class="verdict">
+        <h3>Notre verdict</h3>
+        <p>C'est le seul produit du site où l'on conseille de <strong>ne pas viser le moins cher par défaut</strong>. Un écran qui tombe coûte bien plus que la différence de prix.</p>
+        <p><strong>Temu</strong> peut convenir pour un petit écran léger. <strong>Amazon</strong> est plus sûr pour un grand écran, surtout grâce au retour rapide si le bras n'est pas compatible.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       COMPARATIF 3 : KIT DE GESTION DES CÂBLES
+       ========================================================= -->
+  <section class="comparatif" id="cables">
+    <div class="conteneur">
+      <h2>🔌 Kit de gestion des câbles : Temu ou Amazon ?</h2>
+      <p class="sous-titre">Attaches, clips, gaines, goulottes, bac sous le bureau... Ici, la différence entre les deux sites est souvent minime. Le vrai critère : l'adhésif.</p>
+
+      <div class="duel">
+        <!-- ----- TEMU ----- -->
+        <article class="fiche temu">
+          <span class="etiquette">🟠 L'option ultra-économique</span>
+          <h3>Kit câbles Temu</h3>
+          <!-- ✏️ À COMPLÉTER -->
+          <p class="modele">Modèle : [nom exact] · Contenu : [ex. 10 attaches, 5 clips, 1 gaine de X m]</p>
+          <div class="photo">📷 Photo du produit (la tienne ou une image autorisée)</div>
+          <h4>Les points forts</h4>
+          <ul class="plus">
+            <li>Prix très bas pour beaucoup de pièces</li>
+            <li>Parfait pour les attaches velcro et les clips simples</li>
+            <li>Bon rapport qualité-prix sur les petits accessoires</li>
+          </ul>
+          <h4>Les points faibles typiques</h4>
+          <ul class="moins">
+            <li>Adhésif souvent faible : clips et goulottes qui se décollent</li>
+            <li>Plastique parfois fin et cassant</li>
+            <li>Couleur pas toujours identique à la photo</li>
+          </ul>
+          <div class="avis">
+            <strong>💬 Ce que disent les acheteurs de ce modèle :</strong>
+            <!-- ✏️ À COMPLÉTER -->
+            [Ta synthèse en 2-3 phrases. Cherche surtout les mentions de tenue de l'adhésif.]
+            <span class="source">Synthèse de [nombre] avis lus sur Temu, le [date].</span>
+          </div>
+          <div class="pour-qui"><strong>👉 Pour qui ?</strong> Tu veux juste regrouper tes câbles proprement avec des attaches.</div>
+          <a href="LIEN_TEMU_CABLES" class="bouton temu-btn" target="_blank" rel="sponsored nofollow noopener">Voir sur Temu →</a>
+          <p class="mention-bouton">Lien affilié</p>
+        </article>
+
+        <!-- ----- AMAZON ----- -->
+        <article class="fiche amazon">
+          <span class="etiquette">⭐ L'option confort et rapidité</span>
+          <h3>Kit câbles Amazon</h3>
+          <!-- ✏️ À COMPLÉTER -->
+          <p class="modele">Modèle : [nom exact] · Contenu : [ex. bac métal à visser, goulotte de X cm]</p>
+          <div class="photo">📷 Photo du produit (la tienne ou une image autorisée)</div>
+          <h4>Les points forts</h4>
+          <ul class="plus">
+            <li>Choix de bacs sous bureau en métal, à visser</li>
+            <li>Modèles avec adhésif de meilleure qualité plus faciles à trouver</li>
+            <li>Livraison rapide pour finir ton setup le week-end</li>
+          </ul>
+          <h4>Les points faibles typiques</h4>
+          <ul class="moins">
+            <li>Plus cher pour des pièces souvent identiques</li>
+            <li>Beaucoup de kits sont les mêmes génériques que sur Temu</li>
+          </ul>
+          <div class="avis">
+            <strong>💬 Ce que disent les acheteurs de ce modèle :</strong>
+            <!-- ✏️ À COMPLÉTER -->
+            [Ta synthèse en 2-3 phrases, avec tes mots.]
+            <span class="source">Synthèse de [nombre] avis lus sur Amazon, le [date].</span>
+          </div>
+          <div class="pour-qui"><strong>👉 Pour qui ?</strong> Tu veux cacher multiprise et câbles sous le bureau avec une solution solide.</div>
+          <a href="LIEN_AMAZON_CABLES" class="bouton amazon-btn" target="_blank" rel="sponsored nofollow noopener">Voir le prix actuel sur Amazon →</a>
+          <p class="mention-bouton">Lien affilié</p>
+        </article>
+      </div>
+
+      <div class="tableau-scroll">
+        <table>
+          <thead><tr><th>Critère</th><th>🟠 Temu</th><th>⭐ Amazon</th></tr></thead>
+          <tbody>
+            <tr><td>Prix</td><td>Très bas</td><td>Plus élevé</td></tr>
+            <tr><td>Attaches et clips simples</td><td>Largement suffisant</td><td>Souvent identique</td></tr>
+            <tr><td>Tenue de l'adhésif</td><td>Souvent faible</td><td>Variable, meilleure sur certains modèles</td></tr>
+            <tr><td>Bacs à visser solides</td><td>Plus rares</td><td>Plus faciles à trouver</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="checklist">
+        <h3>✅ Conseils de pose :</h3>
+        <ul>
+          <li>Nettoie la surface avant de coller, et attends quelques heures avant d'y fixer les câbles</li>
+          <li>Pour une multiprise ou un poids important, préfère une fixation <strong>à visser</strong></li>
+          <li>Laisse de l'air autour des blocs d'alimentation qui chauffent</li>
+        </ul>
+      </div>
+
+      <div class="verdict">
+        <h3>Notre verdict</h3>
+        <p>C'est le produit où <strong>Temu est le plus souvent suffisant</strong> : pour des attaches velcro et des clips, payer plus cher apporte peu.</p>
+        <p>Pour un <strong>bac sous le bureau</strong> qui doit porter une multiprise, une solution à visser (plus facile à trouver sur Amazon) est plus fiable.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section id="faq">
+    <div class="conteneur">
+      <h2>Questions fréquentes</h2>
+      <details>
+        <summary>Avez-vous testé ces produits ?</summary>
+        <p>Non, sauf mention contraire. Nos comparatifs sont des synthèses des avis d'acheteurs, avec le nombre d'avis lus et la date. Quand on teste un produit nous-mêmes, on l'indique clairement.</p>
+      </details>
+      <details>
+        <summary>Les produits Temu sont-ils de mauvaise qualité ?</summary>
+        <p>Pas forcément. Beaucoup sont les mêmes produits génériques que ceux vendus sur Amazon. La différence se joue surtout sur la livraison, les retours et la régularité des finitions.</p>
+      </details>
+      <details>
+        <summary>Pourquoi ne pas afficher les prix ?</summary>
+        <p>Les prix changent tout le temps. Pour ne jamais t'afficher un prix faux, on te renvoie vers le prix actuel sur chaque site.</p>
+      </details>
+      <details>
+        <summary>Les liens affiliés influencent-ils vos avis ?</summary>
+        <p>Non. On touche une commission sur les deux sites, donc on n'a aucun intérêt à favoriser l'un plutôt que l'autre. Notre seul intérêt, c'est que tu reviennes.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- ===================== PIED DE PAGE ===================== -->
+  <footer>
+    <div class="conteneur">
+      <p><strong>Affiliation :</strong> Setup Malin contient des liens affiliés. Si tu achètes via ces liens, je peux toucher une commission, sans aucun surcoût pour toi. Cela ne change pas nos avis.</p>
+      <p>En tant que Partenaire Amazon, je réalise un bénéfice sur les achats remplissant les conditions requises.</p>
+      <!-- ✏️ À COMPLÉTER : informations légales -->
+      <p><strong>Éditeur :</strong> [Ton nom ou nom du site] · <strong>Hébergeur :</strong> GitHub Inc., 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis</p>
+      <p>© 2026 Setup Malin</p>
+    </div>
+  </footer>
+
+</body>
+</html>
